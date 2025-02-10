@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %} REGISTER {% endblock %}
+{% block body %}
+    <h1>REGISTER</h1>
+    <form action="/" method="POST">        
+        <input type="text" placeholder="Username" name="username">
+        <input type="email" placeholder="Email" name="email">
+        <input type="password" placeholder="Password" name="password">
+        <button type="submit">enviar</button>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token()}}">
+    </form>
+{% endblock %}

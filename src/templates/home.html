@@ -1,0 +1,5 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Bienvenido calvarotas {{ usuario.username }}</h1>
+<a href="{{ url_for('logout' ) }}">cerrar sesion</a>
+{% endblock %}
