@@ -10,7 +10,6 @@ class developmentConfig(Config):
     MYSQL_PASSWORD= os.getenv('MYSQL_PASSWORD')
     MYSQL_DB= os.getenv('MYSQL_DB')
 
-
 class ProductionConfig(Config):
     DEBUF=False
     MYSQL_HOST= os.getenv('MYSQL_HOST')

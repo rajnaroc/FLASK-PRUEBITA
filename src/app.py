@@ -2,7 +2,9 @@ from flask import Flask, render_template,request,redirect,url_for,flash
 from flask_mysqldb import MySQL
 from flask_login import  LoginManager, login_user,logout_user,login_required, current_user
 from flask_wtf.csrf import CSRFProtect
+from flask_mail import Mail,Message
 from config import config
+import smtplib
 app = Flask(__name__)
 
 # MODELS
@@ -16,6 +18,23 @@ mysql = MySQL(app)
 login_manager_app = LoginManager(app)
 
 csrf = CSRFProtect(app)
+
+mail = Mail(app)
+
+def sendMail(email):
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login('voyaexplotar281024@gmail.com', 'qoicnybnjfhlntmu')
+
+    message = "Subject: Flask-Pruebita\n\nTu cuenta Creada."
+    server.sendmail('voyaexplotar281024@gmail.com', email, message)
+
+    server.quit()
+    print("Correo enviado con éxito")
+
+    return 'Correo enviado con éxito'
+
 
 @login_manager_app.user_loader
 def load_user(id):
@@ -42,11 +61,12 @@ def login():
         password = request.form['password']
         username = 'text'
         user = User(0,username,email,password)
-
+    
         logger_user = ModelUser.login(mysql,user)
 
         if logger_user:
             if logger_user.password:
+                send_mail(email)
                 login_user(logger_user)
                 return redirect(url_for('home'))
             else:
