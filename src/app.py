@@ -2,7 +2,6 @@ from flask import Flask, render_template,request,redirect,url_for,flash
 from flask_mysqldb import MySQL
 from flask_login import  LoginManager, login_user,logout_user,login_required, current_user
 from flask_wtf.csrf import CSRFProtect
-from flask_mail import Mail,Message
 from config import config
 import smtplib
 app = Flask(__name__)
